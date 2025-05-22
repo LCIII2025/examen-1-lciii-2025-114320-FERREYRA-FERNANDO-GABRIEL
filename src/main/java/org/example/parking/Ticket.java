@@ -36,8 +36,14 @@ public class Ticket {
         // el importe es por hora redondeando el tiempo hacia arriba,
         // por ejemplo si estuvo 45 minutos se le tarifa por 60, si estuvo 80 minutos se le tarifa por 120 minutos, etc...
         // retornar el importe final
-
-        return 0;
+        long minutos = calcularMinutos();
+        long horas = (long)Math.ceil(minutos/ 60);
+        int precioPorHora = switch (vehiculo.getTipo()) {
+            case AUTO -> 100;
+            case SUV -> 130;
+            case PICKUP -> 180;
+        };
+        return precioPorHora * horas;
     }
 
 }
